@@ -9,6 +9,7 @@ import logo_7 from "../assets/image/logo_7.png";
 import logo_8 from "../assets/image/logo_8.png";
 import logo_9 from "../assets/image/logo_9.png";
 import Plus from "../assets/image/Vector.png";
+import { useNavigate } from 'react-router-dom';
 
 const users = [
   {
@@ -85,7 +86,6 @@ const users = [
         status: "Working",
         score: "W2,100",
         cancelled: false,
-        selected: true,
         logo: logo_5,
       },
       {
@@ -99,7 +99,6 @@ const users = [
         status: "Working",
         score: "W1,800",
         cancelled: false,
-        selected: true,
         logo: logo_6,
       },
       {
@@ -114,7 +113,6 @@ const users = [
         status: "Working",
         score: "W900",
         cancelled: false,
-        selected: true,
         logo: logo_7,
       },
     ],
@@ -153,50 +151,38 @@ const users = [
   },
 ];
 
-function ProgressBar({ done, total }) {
-  const pct = Math.round((done / total) * 100);
-  return (
-    <div className="w-8.25 bg-gray-200 rounded-full mt-1.5">
-      <div
-        className="h-0.75 bg-[#3385FF] border border-[#3385FF] rounded-full"
-        style={{ width: `${pct}%` }}
-      />
-    </div>
-  );
-}
-
 export default function OrderDashboard() {
   const [activeTab, setActiveTab] = useState(0);
   const [checked, setChecked] = useState({});
+  const navigate = useNavigate();
 
   const toggleCheck = (id) =>
     setChecked((prev) => ({ ...prev, [id]: !prev[id] }));
 
   return (
-    <div className=" w-full bg-[#F9F9F9] min-h-screen">
+    <div className="w-full bg-[#F9F9F9] min-h-screen p-4">
       {/* Top bar */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between gap-2 max-w-7xl mx-auto w-full mb-4">
+        <div className="flex items-center gap-2 shrink-0">
           <input
             type="checkbox"
             className="w-3.5 h-3.5 rounded-[3px] border border-[#D6D6D6] accent-[#7F56DA] cursor-pointer"
           />
-
-          <select className="text-xs rounded-md px-2 py-1 bg-white ">
+          <select className="text-xs rounded-md px-2 py-1 bg-white border border-gray-200">
             <option>100</option>
             <option>75</option>
             <option>50</option>
           </select>
         </div>
 
-        <div className="bg-white p-1 rounded-[10px] inline-flex gap-2">
+        <div className="bg-white p-1 rounded-[10px] inline-flex gap-1 shrink-0 border border-gray-100">
           {["Order 1", "Order 2", "Order 3"].map((tab, i) => (
             <button
               key={i}
               onClick={() => setActiveTab(i)}
-              className={`text-[12px] font-lexend font-normal leading-none px-3.75 py-1.5 rounded-lg transition-colors ${activeTab === i
-                  ? "bg-[#7F56DA] text-white"
-                  : "bg-white text-[#9AA2AB]"
+              className={`text-[11px] font-lexend font-normal leading-none px-2.5 py-1.5 rounded-lg transition-colors whitespace-nowrap ${activeTab === i
+                ? "bg-[#7F56DA] text-white"
+                : "bg-white text-[#9AA2AB]"
                 }`}
             >
               {tab}
@@ -205,129 +191,200 @@ export default function OrderDashboard() {
         </div>
       </div>
 
-      {/* Sections */}
-      {users.map((section, si) => (
-        <div key={si} className="">
-          {/* Group label */}
-          <div className="flex items-center gap-3 py-5 px-1">
-            <p className="font-lexend text-[14px] font-normal md:text-[#9AA2AB] whitespace-nowrap">
-              {section.group}
-            </p>
-            <div className="flex-1 border-t border-[#272742]/5"></div>
-          </div>
+      {/* Sections container */}
+      <div className=" mx-auto w-full space-y-6">
+        {users.map((section, si) => (
+          <div key={si}>
+            {/* Group label */}
+            <div className="flex items-center py-3 px-1">
+              <p className="font-lexend text-[14px] font-normal md:text-[#9AA2AB] whitespace-nowrap">
+                {section.group}
+              </p>
+              <div className="flex-1 border-t border-[#272742]/5" />
+            </div>
 
-          {/* Card */}
-          <div className="w-full bg-white rounded-[15px] overflow-hidden">
-            {section.rows.map((row) => (
-              <div
-                key={row.id}
-                className={`w-full flex items-center justify-between gap-3 px-4 py-3.5 transition-colors hover:bg-gray-50 ${checked[row.id]
-                    ? "bg-indigo-50 border-l-4 border-l-[#7F56DA]"
+            {/* Card wrapper */}
+            <div className="w-full bg-white rounded-[15px] overflow-hidden">
+              {section.rows.map((row) => (
+                <div
+                  key={row.id}
+                  className={`w-full transition-colors hover:bg-gray-50 border-b border-gray-100 last:border-b-0 ${checked[row.id]
+                    ? "bg-indigo-50/50 border-l-4 border-l-[#7F56DA]"
                     : ""
-                  }`}
-              >
-                {/* Checkbox */}
-                <input
-                  type="checkbox"
-                  checked={!!checked[row.id]}
-                  onChange={() => toggleCheck(row.id)}
-                  className="w-3.5 h-3.5 rounded-[3px] border-gray-300 accent-[#7F56DA] shrink-0 cursor-pointer"
-                />
-
-                {/* Avatar */}
-                <img
-                  src={row.avatar}
-                  alt={row.name}
-                  className="w-8.75 h-8.75 rounded-[94px] object-cover shrink-0"
-                />
-
-                {/* Name + time */}
-                <div className=" shrink-0">
-                  <p className="text-[14px] font-lexend font-medium text-[#272742] leading-none">
-                    {row.name}
-                  </p>
-                  <p className="text-[12px] font-lexend font-normal text-[#9AA2AB] opacity-70 leading-none mt-2">
-                    {row.time}
-                  </p>
-                </div>
-
-                {/* Order count + progress */}
-                <div className="shrink-0">
-                  <p className="font-lexend font-normal text-[14px]  leading-none tracking-normal text-gray-800 ">
-                    {row.orderDone} <span className="text-gray-400">of</span>{" "}
-                    {row.orderTotal}
-                  </p>
-                  <div className="flex items-center gap-1.25 mt-2">
-                    <ProgressBar done={row.orderDone} total={row.orderTotal} />
-                    {row.payment === "detail" && (
-                      <span className="hidden md:flex w-2.75 h-2.75 border border-[#7F56DA] rounded-[3px] items-center justify-center shrink-0 mt-1.25">
-                        <img src={Plus} alt="plus" className="w-1.25 h-1.25" />
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Payment */}
-                <div className="hidden md:block  shrink-0">
-                  {row.payment === "paid" ? (
-                    <span className="border border-[#0BAF4C] text-[#0BAF4C] font-lexend font-normal text-[14px] leading-none tracking-normal rounded-md pt-0.75 pr-3 pb-0.75 pl-3">
-                      Paid
-                    </span>
-                  ) : (
-                    <div>
-                      <p className="font-lexend font-normal text-[14px] leading-none tracking-normal text-[#272742]">
-                        {row.paymentDetail.qty}
-                      </p>
-                      <div className="flex items-center gap-1 mt-0.5">
-                        <span className="font-lexend font-normal text-[10px] leading-none tracking-normal text-[#5096FF] mt-2">
-                          {row.paymentDetail.label}
-                        </span>
-                        <span className="w-2.75 h-2.75 border border-[#7F56DA] rounded-[3px] flex items-center justify-center shrink-0 mt-2">
-                          <img
-                            src={Plus}
-                            alt="plus"
-                            className="w-1.25 h-1.25"
-                          />
-                        </span>
+                    }`}
+                >
+                  {/* ── Desktop & Tablet Row (sm+) ── */}
+                  <div className="hidden sm:flex items-center justify-between px-4 py-3.5 gap-4">
+                    {/* DIV 1 — Checkbox + Avatar + Name + Time */}
+                    <div className="flex items-center gap-3 min-w-50">
+                      <input
+                        type="checkbox"
+                        checked={!!checked[row.id]}
+                        onChange={() => toggleCheck(row.id)}
+                        className="w-3.5 h-3.5 rounded-[3px] border-gray-300 accent-[#7F56DA] shrink-0 cursor-pointer"
+                      />
+                      <img
+                        src={row.avatar}
+                        alt={row.name}
+                        className="w-9 h-9 rounded-full object-cover shrink-0"
+                      />
+                      <div className="truncate">
+                        <p className="text-[14px] font-lexend font-medium text-[#272742] leading-none truncate">
+                          {row.name}
+                        </p>
+                        <p className="text-[12px] font-lexend font-normal text-[#9AA2AB] opacity-70 leading-none mt-2">
+                          {row.time}
+                        </p>
                       </div>
                     </div>
-                  )}
-                </div>
 
-                {/* Status + score */}
-                <div className="shrink-0 text-right">
-                  <p
-                    className={`font-lexend font-medium text-[14px] leading-none tracking-normal text-[#272742] ${row.cancelled ? "text-[#FF284C]" : "text-gray-900"
-                      }`}
-                  >
-                    {row.status}
-                  </p>
-                  <p className="font-lexend text-[12px] text-red-400 line-through mt-0.5">
-                    {row.score}
-                  </p>
-                </div>
+                    {/* DIV 2 — Order count + progress */}
+                    <div className="flex flex-col items-start min-w-25">
+                      <p className="font-lexend font-normal text-[14px] leading-none text-gray-800">
+                        {row.orderDone} <span className="text-gray-400">of</span>{" "}
+                        {row.orderTotal}
+                      </p>
+                      <div className="flex items-center gap-1.5 mt-2 w-full">
+                        <div className="bg-gray-200 rounded-full w-20 h-1">
+                          <div
+                            className="h-full bg-[#3385FF] rounded-full"
+                            style={{
+                              width: `${Math.round(
+                                (row.orderDone / row.orderTotal) * 100
+                              )}%`,
+                            }}
+                          />
+                        </div>
+                        {row.payment === "detail" && (
+                          <span className="w-3 h-3 border border-[#7F56DA] rounded-[3px] flex items-center justify-center shrink-0">
+                            <img src={Plus} alt="plus" className="w-1.5 h-1.5" />
+                          </span>
+                        )}
+                      </div>
+                    </div>
 
-                {/* Logo box */}
-                <div className="shrink-0">
-                  {row.logo ? (
-                    <img
-                      src={row.logo}
-                      alt={row.name}
-                      className="w-9.5 h-9.5 rounded-[5px] object-contain"
+                    {/* DIV 3 — Payment */}
+                    <div className="min-w-25 md:flex items-center hidden">
+                      {row.payment === "paid" ? (
+                        <span className="border border-[#0BAF4C] text-[#0BAF4C] font-lexend font-normal text-[12px] leading-none rounded-md px-2.5 py-1">
+                          Paid
+                        </span>
+                      ) : (
+                        <div>
+                          <p className="font-lexend font-normal text-[14px] leading-none text-[#272742]">
+                            {row.paymentDetail.qty}
+                          </p>
+                          <div className="flex items-center gap-1 mt-1.5">
+                            <span className="font-lexend font-normal text-[10px] text-[#5096FF]">
+                              {row.paymentDetail.label}
+                            </span>
+                            <span className="w-3 h-3 border border-[#7F56DA] rounded-[3px] flex items-center justify-center shrink-0">
+                              <img src={Plus} alt="plus" className="w-1.5 h-1.5" />
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* DIV 4 — Status + Score + Logo */}
+                    <div className="flex items-center gap-4 text-right justify-end min-w-30">
+                      <div>
+                        <p
+                          className={`font-lexend font-medium text-[14px] leading-none ${row.cancelled ? "text-[#FF284C]" : "text-[#272742]"
+                            }`}
+                        >
+                          {row.status}
+                        </p>
+                        <p
+                          className={`font-lexend text-[12px] line-through mt-1.5 ${row.cancelled ? "text-[#FF284C]" : "text-[#5096FF]"
+                            }`}
+                        >
+                          {row.score}
+                        </p>
+                      </div>
+                      {row.logo ? (
+                        <img
+                          src={row.logo}
+                          alt={row.name}
+                          className="w-9 h-9 rounded-[5px] object-contain hidden md:block shrink-0"
+                        />
+                      ) : (
+                        <span className="text-lg shrink-0">◆</span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* ── Mobile row (< sm) ── */}
+                  <div className="flex sm:hidden items-center gap-2 px-3 py-3">
+                    <input
+                      type="checkbox"
+                      checked={!!checked[row.id]}
+                      onChange={() => toggleCheck(row.id)}
+                      className="w-3.5 h-3.5 rounded-[3px] border-gray-300 accent-[#7F56DA] shrink-0 cursor-pointer"
                     />
-                  ) : (
-                    <span className="text-lg">◆</span>
-                  )}
-                </div>
 
-                <button className="flex md:hidden fixed bottom-6 right-6 w-12 h-12 bg-[#7F56DA] rounded-full items-center justify-center shadow-lg z-20">
-                  <span className="text-white text-2xl leading-none">+</span>
-                </button>
-              </div>
-            ))}
+                    <img
+                      src={row.avatar}
+                      alt={row.name}
+                      className="w-8 h-8 rounded-full object-cover shrink-0"
+                    />
+
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[13px] font-lexend font-medium text-[#272742] leading-none truncate">
+                        {row.name}
+                      </p>
+                      <p className="text-[11px] font-lexend text-[#9AA2AB] opacity-70 leading-none mt-1">
+                        {row.time}
+                      </p>
+                    </div>
+
+                    <div className="shrink-0">
+                      <p className="font-lexend font-normal text-[12px] leading-none text-gray-800 whitespace-nowrap">
+                        {row.orderDone}{" "}
+                        <span className="text-gray-400 text-[10px]">of</span>{" "}
+                        {row.orderTotal}
+                      </p>
+                      <div className="bg-gray-200 rounded-full mt-1.5 w-12 h-0.75">
+                        <div
+                          className="h-full bg-[#3385FF] rounded-full"
+                          style={{
+                            width: `${Math.round(
+                              (row.orderDone / row.orderTotal) * 100
+                            )}%`,
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="shrink-0 text-right min-w-16.25">
+                      <p
+                        className={`font-lexend font-medium text-[12px] leading-none ${row.cancelled ? "text-[#FF284C]" : "text-[#272742]"
+                          }`}
+                      >
+                        {row.status}
+                      </p>
+                      <p
+                        className={`font-lexend text-[10px] line-through mt-1 ${row.cancelled ? "text-[#FF284C]" : "text-[#5096FF]"
+                          }`}
+                      >
+                        {row.score}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      {/* FAB (Only for mobile) */}
+      <button
+        onClick={() => navigate('/add-link')}
+        className="flex md:hidden fixed bottom-6 right-6 w-12 h-12 bg-[#7F56DA] rounded-full items-center justify-center shadow-lg z-20"
+      >
+        <span className="text-white text-2xl leading-none">+</span>
+      </button>
     </div>
   );
 }

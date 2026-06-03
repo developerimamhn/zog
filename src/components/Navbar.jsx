@@ -23,7 +23,7 @@ const Navbar = () => {
     return (
         // <div className="w-full h-17 bg-[#FFFFFF] flex items-center justify-between px-6 sm:px-13 md:px-18 lg:px-24 xl:px-30 2xl:px-37.5">
         <div className="bg-[#FFFFFF]">
-            <div className="w-full max-w-400 mx-auto h-17 flex items-center justify-between px-4">
+            <div className="w-full max-w-400 mx-auto py-4.25 flex items-center justify-between px-4">
                 <div className="hidden md:flex items-center gap-6.75">
                     <img src={navbar_logo} alt="Logo" className="h-6.25 w-auto cursor-pointer" />
                     <div className="relative w-77.25">
@@ -56,7 +56,7 @@ const Navbar = () => {
                     />
 
                     <div
-                        className={`fixed top-0 left-0 h-full w-[50%] md:w-[50%] bg-white z-50 shadow-xl transition-transform duration-400 ease-in-out
+                        className={`fixed top-0 left-0 h-full w-[60%] sm:w-[50%] bg-white z-50 shadow-xl transition-transform duration-400 ease-in-out
                     ${isOpen ? "translate-x-0" : "-translate-x-full"}
                `}
                     >
@@ -97,7 +97,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 {/* Mobile sidebar card */}
-                <div className="md:hidden flex items-center justify-center rounded-[10px] py-2.5 px-5 gap-2.5 bg-[#F76743] opacity-100">
+                <div className="md:hidden flex items-center justify-center rounded-[10px] py-3.5 px-5 gap-2.5 bg-[#F76743] opacity-100">
                     <span className="font-lexend font-medium text-[16px] leading-[100%] tracking-[0%] text-[#FFFFFF]">
                         Pay 628,000
                     </span>
