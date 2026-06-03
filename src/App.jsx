@@ -13,13 +13,17 @@ function App() {
         <Route path="/" element={
           <div className="w-full h-auto bg-[#F8F8F8]">
             <Navbar />
-            <div className="w-full max-w-400 mx-auto flex justify-between gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6 2xl:gap-7.5 px-4 pt-10">
-              <Sidebar />
-              <div className="w-full">
+            <div className="grid grid-cols-12 mx-auto justify-between gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6 2xl:gap-7.5 pt-10 container">
+              <div className="col-span-2 lg:col-span-2">
+                <Sidebar />
+              </div>
+              <div className="col-span-7 lg:col-span-6 ">
                 <Header />
                 <OrderDashboard />
               </div>
-              <OrderList />
+              <div className="col-span-3 lg:col-span-4">
+                <OrderList />
+              </div>
             </div>
           </div>
         } />

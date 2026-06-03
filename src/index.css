@@ -1,17 +1,123 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
-
 @import "tailwindcss";
 
 
 @theme {
   --breakpoint-*: initial;
-  --breakpoint-sm: 480px;
+  --breakpoint-sm: 375px;
   --breakpoint-md: 868px;
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1120px;
-  --breakpoint-2xl: 1236px;
+  --breakpoint-2xl: 1140px;
 }
 
 @theme {
   --font-lexend: "Lexend", sans-serif;
+}
+
+
+@font-face {
+  font-family: "Lexend";
+  src: url("./assets/font/Lexend-Thin.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("./assets/font/Lexend-ExtraLight.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("./assets/font/Lexend-Light.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("./assets/font/Lexend-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("./assets/font/Lexend-Medium.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("./assets/font/Lexend-SemiBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("./assets/font/Lexend-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("./assets/font/Lexend-ExtraBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("./assets/font/Lexend-Black.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 900;
+}
+#smooth-wrapper {
+  height: 100%;
+  overflow: hidden;
+}
+
+#smooth-content {
+  will-change: transform;
+}
+
+
+@layer utilities {
+  .paybtn {
+    font-family: 'Lexend';
+    @apply font-medium text-[12px] leading-[150%] text-[#FFFFFF] opacity-45;
+  }
+  .counttext {
+    font-family: 'Lexend';
+    @apply font-medium text-[13px] lg:text-[14px] xl:text-[15px] 2xl:text-[16px] leading-[100%] text-[#FFFFFF];
+  }
+  .btnpay{
+    font-family: 'Lexend';
+    @apply mt-4 flex items-center justify-center gap-1 lg:gap-1.5 xl:gap-2 2xl:gap-2.5 rounded-[10px] bg-white py-2.5 w-full cursor-pointer
+  }
+  .manupading{
+    font-family: 'Lexend';
+    @apply font-medium text-[12px] leading-[100%] text-[#9AA2AB];
+  }
+  .manuitemsslide{
+    font-family: 'Lexend';
+    @apply font-normal text-[14px] leading-[100%] text-[#272742];
+  }
+  .checkboxcontes{
+    @apply w-3.5 h-3.5 rounded-[3px] border border-[#D6D6D6] accent-[#7F56DA] cursor-pointer;
+  }
+  .usernametext{
+    font-family: 'Lexend';
+    @apply text-[14px] font-normal text-[#272742] md:text-[#9AA2AB] whitespace-nowrap leading-[100%] ;
+  }
+  .utnoneto{
+    font-family: 'Lexend';
+    @apply text-[11px] cursor-pointer font-lexend font-normal leading-none px-3.75 py-1.5 rounded-lg transition-colors whitespace-nowrap;
+  }
 }

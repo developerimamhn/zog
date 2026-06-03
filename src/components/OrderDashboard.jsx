@@ -158,29 +158,60 @@ export default function OrderDashboard() {
 
   const toggleCheck = (id) =>
     setChecked((prev) => ({ ...prev, [id]: !prev[id] }));
+    const [isOpen, setIsOpen] = useState(false)
+    const [selected, setSelected] = useState("100")
 
-  return (
-    <div className="w-full bg-[#F9F9F9] min-h-screen p-4">
+  return (  
+    <div className="w-full bg-[#F9F9F9] p-4">
       {/* Top bar */}
-      <div className="flex items-center justify-between gap-2 max-w-7xl mx-auto w-full mb-4">
+      <div className="flex items-center justify-between gap-2 mx-auto w-full mb-4">
         <div className="flex items-center gap-2 shrink-0">
           <input
             type="checkbox"
-            className="w-3.5 h-3.5 rounded-[3px] border border-[#D6D6D6] accent-[#7F56DA] cursor-pointer"
+            className="checkboxcontes"
           />
-          <select className="text-xs rounded-md px-2 py-1 bg-white border border-gray-200">
-            <option>100</option>
-            <option>75</option>
-            <option>50</option>
-          </select>
+
+          <div className="relative inline-block">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-xs rounded-md px-3.75 py-1.75 bg-white border-none outline-none cursor-pointer flex items-center gap-2"
+            >
+              {selected}
+              <svg
+                className={`transition-transform duration-200 ${isOpen ? "rotate-180" : "rotate-0"}`}
+                width="9" height="6" viewBox="0 0 9 6" fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M0.353554 0.353577L4.35355 4.35358L8.35355 0.353577" stroke="black"/>
+              </svg>
+            </button>
+
+            <div className={`absolute top-full left-0 mt-1 w-full bg-white border border-gray-200 rounded-md shadow-md overflow-hidden z-50 transition-all duration-200 origin-top ${
+              isOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0 pointer-events-none"
+            }`}>
+              {["100", "750", "500"].map((opt) => (
+                <div
+                  key={opt}
+                  onClick={() => { setSelected(opt); setIsOpen(false) }}
+                  className={`text-xs px-3 py-1.5 cursor-pointer transition-colors duration-150 ${
+                    selected === opt ? "bg-gray-100 font-medium" : "hover:bg-gray-50"
+                  }`}
+                >
+                  {opt}
+                </div>
+              ))}
+            </div>
+
+            {isOpen && <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />}
+          </div>
         </div>
 
-        <div className="bg-white p-1 rounded-[10px] inline-flex gap-1 shrink-0 border border-gray-100">
+        <div className="bg-white p-1.25 rounded-[10px] inline-flex gap-1 shrink-0 border border-gray-100 ">
           {["Order 1", "Order 2", "Order 3"].map((tab, i) => (
             <button
               key={i}
               onClick={() => setActiveTab(i)}
-              className={`text-[11px] font-lexend font-normal leading-none px-2.5 py-1.5 rounded-lg transition-colors whitespace-nowrap ${activeTab === i
+              className={`utnoneto ${activeTab === i
                 ? "bg-[#7F56DA] text-white"
                 : "bg-white text-[#9AA2AB]"
                 }`}
@@ -195,76 +226,62 @@ export default function OrderDashboard() {
       <div className=" mx-auto w-full space-y-6">
         {users.map((section, si) => (
           <div key={si}>
-            {/* Group label */}
-            <div className="flex items-center py-3 px-1">
-              <p className="font-lexend text-[14px] font-normal md:text-[#9AA2AB] whitespace-nowrap">
+            <div className="flex items-center py-3 px-1 gap-7.5">
+              <p className="usernametext">
                 {section.group}
               </p>
               <div className="flex-1 border-t border-[#272742]/5" />
             </div>
-
-            {/* Card wrapper */}
             <div className="w-full bg-white rounded-[15px] overflow-hidden">
               {section.rows.map((row) => (
                 <div
                   key={row.id}
-                  className={`w-full transition-colors hover:bg-gray-50 border-b border-gray-100 last:border-b-0 ${checked[row.id]
-                    ? "bg-indigo-50/50 border-l-4 border-l-[#7F56DA]"
-                    : ""
-                    }`}
+                  className={`w-full transition-colors hover:bg-gray-50 border-b border-gray-100 last:border-b-0 `}
                 >
-                  {/* ── Desktop & Tablet Row (sm+) ── */}
-                  <div className="hidden sm:flex items-center justify-between px-4 py-3.5 gap-4">
-                    {/* DIV 1 — Checkbox + Avatar + Name + Time */}
-                    <div className="flex items-center gap-3 min-w-50">
-                      <input
-                        type="checkbox"
-                        checked={!!checked[row.id]}
-                        onChange={() => toggleCheck(row.id)}
-                        className="w-3.5 h-3.5 rounded-[3px] border-gray-300 accent-[#7F56DA] shrink-0 cursor-pointer"
-                      />
-                      <img
-                        src={row.avatar}
-                        alt={row.name}
-                        className="w-9 h-9 rounded-full object-cover shrink-0"
-                      />
-                      <div className="truncate">
-                        <p className="text-[14px] font-lexend font-medium text-[#272742] leading-none truncate">
-                          {row.name}
-                        </p>
-                        <p className="text-[12px] font-lexend font-normal text-[#9AA2AB] opacity-70 leading-none mt-2">
-                          {row.time}
-                        </p>
+                  <div className="hidden sm:flex items-center justify-between px-4 py-3.5 gap-4 w-full">
+                    <div className='w-full flex items-start justify-start'>
+                      <div className="flex items-center gap-3 w-full">
+                        <input
+                          type="checkbox"
+                          checked={!!checked[row.id]}
+                          onChange={() => toggleCheck(row.id)}
+                          className="w-3.5 h-3.5 rounded-[3px] border-gray-300 accent-[#7F56DA] shrink-0 cursor-pointer"
+                        />
+                        <img
+                          src={row.avatar}
+                          alt={row.name}
+                          className="w-8.75 h-8.75 rounded-full object-cover shrink-0"
+                        />
+                        <div className="truncate">
+                          <p className="text-[14px] font-lexend font-medium text-[#272742] leading-none truncate">
+                            {row.name}
+                          </p>
+                          <p className="text-[12px] font-lexend font-normal text-[#9AA2AB] opacity-70 leading-none mt-2">
+                            {row.time}
+                          </p>
+                        </div>
                       </div>
                     </div>
-
-                    {/* DIV 2 — Order count + progress */}
-                    <div className="flex flex-col items-start min-w-25">
-                      <p className="font-lexend font-normal text-[14px] leading-none text-gray-800">
+                    <div className="w-full flex items-start justify-start">
+                      <div className='flex flex-col items-start w-full'>
+                        <p className="font-lexend font-normal text-[14px] leading-none text-gray-800">
                         {row.orderDone} <span className="text-gray-400">of</span>{" "}
                         {row.orderTotal}
                       </p>
-                      <div className="flex items-center gap-1.5 mt-2 w-full">
-                        <div className="bg-gray-200 rounded-full w-20 h-1">
-                          <div
-                            className="h-full bg-[#3385FF] rounded-full"
-                            style={{
-                              width: `${Math.round(
-                                (row.orderDone / row.orderTotal) * 100
-                              )}%`,
-                            }}
-                          />
+                      <div className="flex items-center gap-1.5 mt-3.25">
+                        <div className="bg-gray-200 rounded-full w-8.25 h-[1.5px]">
+                          <div className="bg-[#3385FF] rounded-full w-4.25 h-[1.5px]"/>
                         </div>
                         {row.payment === "detail" && (
-                          <span className="w-3 h-3 border border-[#7F56DA] rounded-[3px] flex items-center justify-center shrink-0">
+                          <span className="w-2.75 h-2.75 border border-[#7F56DA] rounded-[3px] flex items-center justify-center shrink-0">
                             <img src={Plus} alt="plus" className="w-1.5 h-1.5" />
                           </span>
                         )}
                       </div>
+                      </div>
                     </div>
-
-                    {/* DIV 3 — Payment */}
-                    <div className="min-w-25 md:flex items-center hidden">
+                    <div className='w-full flex items-start justify-start'>
+                    <div className="md:flex items-center hidden w-full">
                       {row.payment === "paid" ? (
                         <span className="border border-[#0BAF4C] text-[#0BAF4C] font-lexend font-normal text-[12px] leading-none rounded-md px-2.5 py-1">
                           Paid
@@ -285,9 +302,11 @@ export default function OrderDashboard() {
                         </div>
                       )}
                     </div>
+                    </div>
 
                     {/* DIV 4 — Status + Score + Logo */}
-                    <div className="flex items-center gap-4 text-right justify-end min-w-30">
+                    <div className='w-full flex items-start justify-start'>
+                    <div className="flex items-center gap-4 text-right justify-end w-full">
                       <div>
                         <p
                           className={`font-lexend font-medium text-[14px] leading-none ${row.cancelled ? "text-[#FF284C]" : "text-[#272742]"
@@ -311,6 +330,7 @@ export default function OrderDashboard() {
                       ) : (
                         <span className="text-lg shrink-0">◆</span>
                       )}
+                    </div>
                     </div>
                   </div>
 
@@ -356,7 +376,7 @@ export default function OrderDashboard() {
                       </div>
                     </div>
 
-                    <div className="shrink-0 text-right min-w-16.25">
+                    <div className="shrink-0 text-right">
                       <p
                         className={`font-lexend font-medium text-[12px] leading-none ${row.cancelled ? "text-[#FF284C]" : "text-[#272742]"
                           }`}

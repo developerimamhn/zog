@@ -40,7 +40,7 @@ const Header = () => {
             </div>
 
             {/* DESKTOP VIEW */}
-            <div className={`hidden sm:flex flex-col items-center justify-center gap-3 p-6 rounded-[15px] transition-all duration-300
+            <div className={`hidden sm:flex flex-col items-center justify-center gap-3 py-[15px] rounded-[15px] transition-all duration-300
                 ${activeCard === index ? "bg-[#854FCA]" : "bg-white"}
               `}
             >
@@ -57,7 +57,7 @@ const Header = () => {
                 />
               </div>
 
-              <p className={`font-lexend font-medium text-[13px] lg:text-[14px] text-center transition-colors duration-300
+              <p className={`font-lexend font-medium text-[13px] lg:text-[14px] text-center transition-colors duration-300 md:block hidden
                   ${activeCard === index ? "text-white" : "text-[#9AA2AB]"}
                 `}
               >
@@ -66,7 +66,7 @@ const Header = () => {
             </div>
 
             {/* MOBILE LINE */}
-            <div className="md:hidden mt-2 flex justify-center">
+            <div className="md:hidden mt-1.25 flex justify-center">
               <div className={`h-0.75 rounded-full bg-[#854FCA] transition-all duration-300
                   ${activeCard === index ? "w-[60%]" : "w-0"}
                 `}
@@ -74,9 +74,9 @@ const Header = () => {
             </div>
 
             {/* DESKTOP LINE */}
-            <div className="hidden md:flex mt-2 justify-center">
+            <div className="hidden md:flex mt-1.25 justify-center">
               <div className={`h-0.75 rounded-full bg-[#854FCA] transition-all duration-300
-                  ${activeCard === index ? "w-[80%]" : "w-0"}
+                  ${activeCard === index ? "w-[70%]" : "w-0"}
                 `}
               />
             </div>

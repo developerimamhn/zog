@@ -12,7 +12,7 @@ const OrderList = () => {
   const [hoveredTab, setHoveredTab] = useState(null);
 
   return (
-    <div className="hidden md:block w-140 h-full p-3 lg:p-3.5 xl:p-4 2xl:p-5 rounded-[15px] bg-[#FFFFFF] opacity-100">
+    <div className="hidden md:block w-full h-fit p-3 lg:p-3.5 xl:p-4 2xl:p-5 rounded-[15px] bg-[#FFFFFF] opacity-100">
       <div className="flex flex-col gap-5">
         <div className='flex items-center gap-2.5'>
           <img src={insta_icon} alt="Logo" className="h-5 w-auto" />
@@ -32,7 +32,7 @@ const OrderList = () => {
                 onClick={() => setActiveTab(index)}
                 onMouseEnter={() => setHoveredTab(index)}
                 onMouseLeave={() => setHoveredTab(null)}
-                className={`py-1.5 px-3.25 sm:px-3.5 md:px-3.75 lg:px-4 xl:px-6.25 rounded-lg text-[12px] font-lexend font-normal transition-all duration-500 ease-in-out cursor-pointer
+                className={`py-1.5 px-3.25 sm:px-3.5 md:px-2 lg:px-4 xl:px-6.25 rounded-lg text-[10px] lg:text-[12px] font-lexend font-normal transition-all duration-500 ease-in-out cursor-pointer
               ${isSelected
                     ? "bg-[#7F56DA] text-white"
                     : "bg-transparent text-[#9AA2AB]"
@@ -51,8 +51,8 @@ const OrderList = () => {
         </div>
       </div>
       <div className="flex items-center justify-end mt-7">
-        <button className="flex items-center justify-center rounded-[10px] py-2.5 px-7.5 gap-2.5 bg-[#7F56DA] opacity-100 cursor-pointer">
-          <span className="font-lexend font-medium text-[14px] leading-[100%] tracking-[0%] text-[#FFFFFF]">
+        <button className="flex items-center justify-center rounded-[10px] py-2.5 px-4 lg:px-7.5 gap-2 lg:gap-2.5 bg-[#7F56DA] opacity-100 cursor-pointer">
+          <span className="font-lexend font-medium text-[12px] lg:text-[14px] leading-[100%] tracking-[0%] text-[#FFFFFF]">
             Next
           </span>
           <svg width="10" height="8" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg">
