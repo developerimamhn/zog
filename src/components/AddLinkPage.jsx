@@ -41,91 +41,91 @@ const AddLinkPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#F4F5F7] flex flex-col">
-            <div className="flex items-center justify-between px-5 pt-5 pb-3">
-                <button
-                    onClick={() => navigate(-1)}
-                    className="w-8.5 h-8.5 rounded-[10px] border border-[#E0E2E8] flex items-center justify-center bg-transparent cursor-pointer"
-                >
-                    <BackIcon />
-                </button>
-                <button
-                    onClick={() => navigate('/')}
-                    className="bg-transparent border-none cursor-pointer p-1"
-                >
-                    <CloseIcon />
-                </button>
-            </div>
-            <div className="flex items-center justify-between px-5 pt-5">
-                <button
-                    onClick={() => setLiked(!liked)}
-                    className="bg-transparent border-none cursor-pointer p-1"
-                >
-                    <HeartIcon filled={liked} />
-                </button>
-                <div className="flex items-center justify-center rounded-[10px] py-3.5 px-5 gap-2.5 bg-[#F76743] opacity-100">
-                    <span className="font-lexend font-medium text-[16px] leading-[100%] tracking-[0%] text-[#FFFFFF]">
-                        Pay 628,000
-                    </span>
-                    <span className="p-1.25 bg-[#FFFFFF] opacity-100 rounded-full flex items-center justify-center">
-                        <svg width="7" height="7" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 3.20221V2.20842H2.09714V0H3.2149V2.20842H5.33333V3.20221H3.2149V5.33333H2.09714V3.20221H0Z" fill="#F76743" />
-                        </svg>
-
-                    </span>
+        <div className="min-h-screen bg-[#F4F5F7]">
+            <div className="w-full flex flex-col container mx-auto">
+                <div className="flex items-center justify-between px-2 sm:px-5 pt-5 pb-3">
+                    <button
+                        onClick={() => navigate(-1)}
+                        className="w-8.5 h-8.5 rounded-[10px] border border-[#E0E2E8] flex items-center justify-center bg-transparent cursor-pointer"
+                    >
+                        <BackIcon />
+                    </button>
+                    <button
+                        onClick={() => navigate('/')}
+                        className="bg-transparent border-none cursor-pointer p-1"
+                    >
+                        <CloseIcon />
+                    </button>
                 </div>
-                <button className="">
-                    <img src={insta_icon} alt="Logo" className="h-5 w-auto" />
-                </button>
-            </div>
-            <div className="flex gap-2 px-5 pb-5 pt-7.5">
-                <div className="w-full flex items-center justify-between p-1.25 rounded-[10px] bg-[#FFFFFF] shadow-[0px_0px_6px_0px_#0000000F] opacity-100">
-                    {orders.map((item, index) => {
-                        const isSelected =
-                            hoveredTab !== null
-                                ? hoveredTab === index
-                                : activeTab === index;
-                        return (
-                            <button
-                                key={item.id}
-                                onClick={() => setActiveTab(index)}
-                                onMouseEnter={() => setHoveredTab(index)}
-                                onMouseLeave={() => setHoveredTab(null)}
-                                className={`py-1.5 px-7.5 rounded-lg text-[12px] font-lexend font-normal transition-all duration-500 ease-in-out cursor-pointer
+                <div className="flex items-center justify-between px-2 sm:px-5 pt-5">
+                    <button
+                        onClick={() => setLiked(!liked)}
+                        className="bg-transparent border-none cursor-pointer p-1"
+                    >
+                        <HeartIcon filled={liked} />
+                    </button>
+                    <div className="flex items-center justify-center rounded-[10px] py-3.5 px-5 gap-2.5 bg-[#F76743] opacity-100">
+                        <span className="font-lexend font-medium text-[16px] leading-[100%] tracking-[0%] text-[#FFFFFF]">
+                            Pay 628,000
+                        </span>
+                        <span className="p-1.25 bg-[#FFFFFF] opacity-100 rounded-full flex items-center justify-center">
+                            <svg width="7" height="7" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 3.20221V2.20842H2.09714V0H3.2149V2.20842H5.33333V3.20221H3.2149V5.33333H2.09714V3.20221H0Z" fill="#F76743" />
+                            </svg>
+
+                        </span>
+                    </div>
+                    <button className="">
+                        <img src={insta_icon} alt="Logo" className="h-5 w-auto" />
+                    </button>
+                </div>
+                <div className="flex gap-2 px-2 sm:px-5 pb-5 pt-7.5">
+                    <div className="w-full flex items-center justify-between p-1.25 rounded-[10px] bg-[#FFFFFF] shadow-[0px_0px_6px_0px_#0000000F] opacity-100">
+                        {orders.map((item, index) => {
+                            const isSelected =
+                                hoveredTab !== null
+                                    ? hoveredTab === index
+                                    : activeTab === index;
+                            return (
+                                <button
+                                    key={item.id}
+                                    onClick={() => setActiveTab(index)}
+                                    onMouseEnter={() => setHoveredTab(index)}
+                                    onMouseLeave={() => setHoveredTab(null)}
+                                    className={`py-1.5 px-5 sm:px-7.5 rounded-lg text-[10px] sm:text-[12px] font-lexend font-normal transition-all duration-500 ease-in-out cursor-pointer
                                     ${isSelected
-                                        ? "bg-[#7F56DA] text-white"
-                                        : "bg-transparent text-[#9AA2AB]"
-                                    }`}
-                            >
-                                {item.name}
-                            </button>
-                        );
-                    })}
+                                            ? "bg-[#7F56DA] text-white"
+                                            : "bg-transparent text-[#9AA2AB]"
+                                        }`}
+                                >
+                                    {item.name}
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
+                <div className="px-2 sm:px-5">
+                    <textarea
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
+                        placeholder="Text here"
+                        className="w-full h-40.25 p-4 rounded-[10px] border border-[#F7F7F7] bg-[#FFFFFF] opacity-100 font-lexend font-normal text-[12px] sm:text-[14px] leading-[100%] outline-none resize-none text-[#9AA2AB]"
+                    />
+                </div>
+                <div className="flex justify-end px-2 sm:px-5 py-6">
+                    <button
+                        onClick={handleNext}
+                        className="group flex items-center justify-center rounded-[10px] py-2 sm:py-2.5 px-4 sm:px-6.25 gap-1.5 sm:gap-2.5 bg-[#7F56DA] font-lexend font-medium text-[12px] sm:text-[14px] text-[#FFFFFF]" >
+                        Next
+                        <span>
+                            <svg className="transition-transform duration-200 group-hover:translate-x-1" width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.11538 3.5L0.5 3.5L8.11538 3.5Z" fill="white" />
+                                <path d="M5.73077 6.5L8.5 3.5L5.73077 0.5M8.11538 3.5L0.5 3.5" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </button>
                 </div>
             </div>
-            <div className="px-5">
-                <textarea
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
-                    placeholder="Text here"
-                    className="w-full h-40.25 p-4 rounded-[10px] border border-[#F7F7F7] bg-[#FFFFFF] opacity-100 font-lexend font-normal text-[14px] leading-[100%] outline-none resize-none text-[#9AA2AB]"
-                />
-            </div>
-            <div className="flex justify-end px-5 py-6">
-                <button
-                    onClick={handleNext}
-                    className="flex items-center justify-center rounded-[10px] py-2.5 px-6.25 gap-2.5 bg-[#7F56DA] font-lexend font-medium text-[14px] text-[#FFFFFF]" >
-                    Next
-                    <span>
-                        <svg width="9" height="7" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8.11538 3.5L0.5 3.5L8.11538 3.5Z" fill="white" />
-                            <path d="M5.73077 6.5L8.5 3.5L5.73077 0.5M8.11538 3.5L0.5 3.5" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-
-                    </span>
-                </button>
-            </div>
-
         </div>
     );
 };
