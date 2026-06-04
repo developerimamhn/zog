@@ -1,7 +1,7 @@
 import { useState } from "react";
 import logo_1 from "../assets/image/like.svg";
 import logo_2 from "../assets/image/man.svg";
-import logo_3 from "../assets/image/img_3.svg";
+import logo_3 from "../assets/image/Vectorsss.png";
 import logo_4 from "../assets/image/massage.svg";
 import logo_5 from "../assets/image/search.svg";
 
