@@ -99,7 +99,7 @@
   }
   .btnpay{
     font-family: 'Lexend';
-    @apply mt-4 flex items-center justify-center gap-1 lg:gap-1.5 xl:gap-2 2xl:gap-2.5 rounded-[10px] bg-white py-2.5 w-full cursor-pointer
+    @apply mt-4 flex items-center justify-center gap-1 lg:gap-1.5 xl:gap-2 2xl:gap-2.5 rounded-[10px] bg-white py-2.5 w-full cursor-pointer text-[#000000] hover:text-[#9AA2AB] transition-all duration-300 
   }
   .manupading{
     font-family: 'Lexend';
@@ -107,17 +107,24 @@
   }
   .manuitemsslide{
     font-family: 'Lexend';
-    @apply font-normal text-[14px] leading-[100%] text-[#272742];
+    @apply font-normal text-[14px] leading-[100%] text-[#272742]  cursor-pointer transition-all duration-300 ;
   }
   .checkboxcontes{
     @apply w-3.5 h-3.5 rounded-[3px] border border-[#D6D6D6] accent-[#7F56DA] cursor-pointer;
   }
   .usernametext{
     font-family: 'Lexend';
-    @apply text-[14px] font-normal text-[#272742] md:text-[#9AA2AB] whitespace-nowrap leading-[100%] ;
+    @apply text-[11px] sm:text-[12.04px] md:text-[13px] lg:text-[14px] font-normal text-[#272742] md:text-[#9AA2AB] whitespace-nowrap leading-[100%] ;
   }
   .utnoneto{
     font-family: 'Lexend';
-    @apply text-[11px] cursor-pointer font-lexend font-normal leading-none px-3.75 py-1.5 rounded-lg transition-colors whitespace-nowrap;
+    @apply text-[9px] sm:text-[10px] md:text-[11px] transition-all duration-500 ease-in-out cursor-pointer font-normal leading-none px-2 py-1 sm:px-2.5 sm:py-1.25 md:px-3.75 md:py-1.5 rounded-md md:rounded-lg whitespace-nowrap;
   }
+}
+.navbarlink {
+  font-family: 'Lexend';
+  @apply font-medium text-[14px] leading-[100%] tracking-[0%] text-[#9AA2AB] hover:text-[#272742] cursor-pointer transition-all duration-300;
+}
+.overflow-y-auto::-webkit-scrollbar {
+  display: none;
 }

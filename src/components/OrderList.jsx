@@ -51,11 +51,11 @@ const OrderList = () => {
         </div>
       </div>
       <div className="flex items-center justify-end mt-7">
-        <button className="flex items-center justify-center rounded-[10px] py-2.5 px-4 lg:px-7.5 gap-2 lg:gap-2.5 bg-[#7F56DA] opacity-100 cursor-pointer">
+        <button className="group flex items-center justify-center rounded-[10px] py-2.5 px-4 lg:px-7.5 gap-2 lg:gap-2.5 bg-[#7F56DA] opacity-100 cursor-pointer">
           <span className="font-lexend font-medium text-[12px] lg:text-[14px] leading-[100%] tracking-[0%] text-[#FFFFFF]">
             Next
           </span>
-          <svg width="10" height="8" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className="h-1.75 w-2 lg:h-2 lg:w-2.5 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8.11538 3.5L0.5 3.5L8.11538 3.5Z" fill="white" />
             <path d="M5.73077 6.5L8.5 3.5L5.73077 0.5M8.11538 3.5L0.5 3.5" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
           </svg>

@@ -17,7 +17,7 @@ const Header = () => {
   ];
 
   return (
-    <div className="w-full bg-[#F9F9F9] md:pb-7.5">
+    <div className="w-full bg-[#F9F9F9] px-1.5 sm:px-2.5 rounded-[15px]">
       <div className="grid grid-cols-5 gap-2.5 sm:gap-2.25 md:gap-2.5 lg:gap-3 xl:gap-3.5 2xl:gap-4 mb-4">
         {cards.map((card, index) => (
           <div
@@ -40,7 +40,7 @@ const Header = () => {
             </div>
 
             {/* DESKTOP VIEW */}
-            <div className={`hidden sm:flex flex-col items-center justify-center gap-3 py-[15px] rounded-[15px] transition-all duration-300
+            <div className={`hidden sm:flex flex-col items-center justify-center gap-3 py-3.75 rounded-[15px] transition-all duration-300
                 ${activeCard === index ? "bg-[#854FCA]" : "bg-white"}
               `}
             >
