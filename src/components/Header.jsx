@@ -64,16 +64,12 @@ const Header = () => {
                 {card.text}
               </p>
             </div>
-
-            {/* MOBILE LINE */}
             <div className="md:hidden mt-1.25 flex justify-center">
               <div className={`h-0.75 rounded-full bg-[#854FCA] transition-all duration-300
                   ${activeCard === index ? "w-[60%]" : "w-0"}
                 `}
               />
             </div>
-
-            {/* DESKTOP LINE */}
             <div className="hidden md:flex mt-1.25 justify-center">
               <div className={`h-0.75 rounded-full bg-[#854FCA] transition-all duration-300
                   ${activeCard === index ? "w-[70%]" : "w-0"}
