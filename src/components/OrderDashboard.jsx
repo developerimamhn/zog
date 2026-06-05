@@ -206,7 +206,7 @@ export default function OrderDashboard() {
     setChecked((prev) => ({ ...prev, [id]: !prev[id] }));
 
   return (
-    <div className="w-full bg-[#F9F9F9] p-4">
+    <div className="w-full bg-[#F9F9F9] p-5">
       {/* Top bar */}
       <div className="flex items-center justify-between gap-2 mx-auto w-full mb-">
         <div className="flex items-center gap-2 shrink-0">

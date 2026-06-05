@@ -22,7 +22,7 @@ const Navbar = () => {
 
     return (
         <div className="bg-[#FFFFFF]">
-            <div className="w-full container mx-auto py-4.25 px-1.5 sm:px-3 flex items-center justify-between ">
+            <div className="w-full container mx-auto py-4.25 px-5 sm:px-0 flex items-center justify-between ">
                 <div className="hidden md:flex items-center gap-6.75">
                     <img src={navbar_logo} alt="Logo" className="h-6.25 w-auto cursor-pointer" />
                     <div className="relative w-77.25">

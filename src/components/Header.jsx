@@ -17,7 +17,7 @@ const Header = () => {
   ];
 
   return (
-    <div className="w-full bg-[#F9F9F9] px-1.5 sm:px-2.5 rounded-[15px]">
+    <div className="w-full bg-[#F9F9F9] px-5 sm:px-0 rounded-[15px]">
       <div className="grid grid-cols-5 gap-2.5 sm:gap-2.25 md:gap-2.5 lg:gap-3 xl:gap-3.5 2xl:gap-4 mb-4">
         {cards.map((card, index) => (
           <div
