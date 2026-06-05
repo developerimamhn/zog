@@ -451,16 +451,18 @@ export default function OrderDashboard() {
       </div>
 
       {/* FAB (Only for mobile) */}
-      <button
-        onClick={() => navigate('/add-link')}
-        className="flex md:hidden fixed bottom-6 right-6 w-12 h-12 border-[#885AC2] bg-[#7F56DA] rounded-full items-center justify-center z-20 backdrop-blur-[9.14px]"
-        style={{ boxShadow: '0 8px 24px rgba(133, 79, 202, 0.6)' }}
-      >
-        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10.2858 4.28574V16.2857" stroke="white" stroke-width="1.71429" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M4.28577 10.2858H16.2858" stroke="white" stroke-width="1.71429" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </button>
+      <div className="flex md:hidden sticky bottom-6 justify-end z-20">
+        <button
+          onClick={() => navigate('/add-link')}
+          className="w-12 h-12 border-[#885AC2] bg-[#7F56DA] rounded-full flex items-center justify-center backdrop-blur-[9.14px]"
+          style={{ boxShadow: '0 8px 24px rgba(133, 79, 202, 0.6)' }}
+        >
+          <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.2858 4.28574V16.2857" stroke="white" strokeWidth="1.71429" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M4.28577 10.2858H16.2858" stroke="white" strokeWidth="1.71429" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 }
