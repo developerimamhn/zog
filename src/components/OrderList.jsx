@@ -32,7 +32,7 @@ const OrderList = () => {
                 onClick={() => setActiveTab(index)}
                 onMouseEnter={() => setHoveredTab(index)}
                 onMouseLeave={() => setHoveredTab(null)}
-                className={`py-1.5 px-3.25 sm:px-3.5 md:px-2 lg:px-4 xl:px-6.25 rounded-lg text-[10px] lg:text-[12px] font-lexend font-normal transition-all duration-500 ease-in-out cursor-pointer
+                className={`py-1.5 w-full rounded-lg text-[10px] lg:text-[12px] font-lexend font-normal transition-all duration-500 ease-in-out cursor-pointer
               ${isSelected
                     ? "bg-[#7F56DA] text-white"
                     : "bg-transparent text-[#9AA2AB]"

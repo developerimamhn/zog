@@ -106,7 +106,7 @@ const Navbar = () => {
                 </div>
                 {/* Mobile sidebar card */}
                 <div className="md:hidden flex items-center justify-center rounded-[10px] py-3.5 px-5 gap-2.5 bg-[#F76743] opacity-100 relative overflow-hidden">
-                    <svg className='absolute top-0 left-0' viewBox="0 0 165 136" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className='absolute top-0 left-0 select-none pointer-events-none' viewBox="0 0 165 136" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <mask id="mask0_54_1820" style={{ maskType: "alpha" }} maskUnits="userSpaceOnUse" x="0" y="0" width="165" height="136">
                     <rect width="165" height="136" rx="15" fill="#20FFE4"/>
                     </mask>
