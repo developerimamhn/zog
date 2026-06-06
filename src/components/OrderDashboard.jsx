@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import logo_1 from "../assets/image/logo_1.png";
 import logo_2 from "../assets/image/logo_2.png";
@@ -187,6 +187,10 @@ export default function OrderDashboard() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("100");
+const [apiUsers, setApiUsers] = useState([]);
+const [loading, setLoading] = useState(true);
+
+
 
   const allIds = users.flatMap(s => s.rows.map(r => r.id));
   const isAllChecked = allIds.length > 0 && allIds.every(id => !!checked[id]);
@@ -204,6 +208,27 @@ export default function OrderDashboard() {
 
   const toggleCheck = (id) =>
     setChecked((prev) => ({ ...prev, [id]: !prev[id] }));
+
+
+useEffect(() => {
+  const fetchData = async () => {
+    const res = await fetch("https://dummyjson.com/users?limit=10");
+    const data = await res.json();
+    setApiUsers(
+      data.users.map((user) => ({
+        id: user.id,
+        name: `${user.firstName} ${user.lastName}`,
+        avatar: user.image,
+      }))
+    );
+    setLoading(false);
+  };
+  fetchData();
+}, []);
+
+const getUser = (id) => apiUsers.find(u => u.id === id);
+
+if (loading) return <div className="w-full p-10 text-center text-[#9AA2AB]">Loading...</div>;
 
   return (
     <div className="w-full bg-[#F9F9F9] p-5">
@@ -311,8 +336,8 @@ export default function OrderDashboard() {
                       className="w-8.75 h-8.75 rounded-full object-cover shrink-0"
                     />
                     <div className="min-w-0">
-                      <p className="text-[11px] sm:text-[12.04px] md:text-[13px] lg:text-[14px] font-lexend font-medium text-[#272742] leading-none truncate">
-                        {row.name}
+                      <p className="text-[11px] sm:text-[12.04px] md:text-[13px] lg:text-[14px] font-lexend font-medium text-[#272742] leading-none truncate lg:pr-2">
+                        {getUser(row.id)?.name || row.name}
                       </p>
                       <p className="text-[9px] sm:text-[10.03px] md:text-[11px] lg:text-[12px] font-lexend font-normal text-[#9AA2AB] opacity-70 leading-none mt-2">
                         {row.time}
@@ -373,15 +398,11 @@ export default function OrderDashboard() {
                         {row.score}
                       </p>
                     </div>
-                    {row.logo ? (
-                      <img
-                        src={row.logo}
-                        alt={row.name}
-                        className="w-9 h-9 rounded-[5px] object-contain hidden md:block shrink-0"
-                      />
-                    ) : (
-                      <span className="text-lg shrink-0">◆</span>
-                    )}
+                    <img
+                      src={getUser(row.id)?.avatar}
+                      alt={getUser(row.id)?.name}
+                      className="w-9 h-9 rounded-[5px] object-cover hidden md:block shrink-0"
+                    />
                   </div>
 
                 </div>
@@ -403,7 +424,7 @@ export default function OrderDashboard() {
 
                     <div className="flex-1 min-w-0">
                       <p className="text-[13px] font-lexend font-medium text-[#272742] leading-none truncate">
-                        {row.name}
+                        {getUser(row.id)?.name || row.name}
                       </p>
                       <p className="text-[11px] font-lexend text-[#9AA2AB] opacity-70 leading-none mt-1">
                         {row.time}
@@ -451,10 +472,10 @@ export default function OrderDashboard() {
       </div>
 
       {/* FAB (Only for mobile) */}
-      <div className="flex md:hidden sticky bottom-6 justify-end z-20">
+      <div className="flex md:hidden sticky bottom-6 justify-end z-20 pointer-events-none">
         <button
           onClick={() => navigate('/add-link')}
-          className="w-12 h-12 border-[#885AC2] bg-[#7F56DA] rounded-full flex items-center justify-center backdrop-blur-[9.14px]"
+          className="pointer-events-auto w-12 h-12 bg-[#7F56DA] rounded-full flex items-center justify-center"
           style={{ boxShadow: '0 8px 24px rgba(133, 79, 202, 0.6)' }}
         >
           <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
